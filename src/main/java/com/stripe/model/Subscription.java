@@ -8,9 +8,13 @@ import com.stripe.exception.InvalidRequestException;
 import com.stripe.net.APIResource;
 import com.stripe.net.RequestOptions;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Map;
 
-
+@Getter @Setter @EqualsAndHashCode(callSuper=false)
 public class Subscription extends APIResource implements MetadataStore<Subscription>, HasId {
 	String id;
 	String object;
@@ -34,182 +38,6 @@ public class Subscription extends APIResource implements MetadataStore<Subscript
 	Double taxPercent;
 	Long trialEnd;
 	Long trialStart;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getObject() {
-		return object;
-	}
-
-	public void setObject(String object) {
-		this.object = object;
-	}
-
-	public Double getApplicationFeePercent() {
-		return applicationFeePercent;
-	}
-
-	public void setApplicationFeePercent(Double applicationFeePercent) {
-		this.applicationFeePercent = applicationFeePercent;
-	}
-
-	public String getBilling() {
-		return billing;
-	}
-
-	public void setBilling(String billing) {
-		this.billing = billing;
-	}
-
-	public Boolean getCancelAtPeriodEnd() {
-		return cancelAtPeriodEnd;
-	}
-
-	public void setCancelAtPeriodEnd(Boolean cancelAtPeriodEnd) {
-		this.cancelAtPeriodEnd = cancelAtPeriodEnd;
-	}
-
-	public Long getCanceledAt() {
-		return canceledAt;
-	}
-
-	public void setCanceledAt(Long canceledAt) {
-		this.canceledAt = canceledAt;
-	}
-
-	public Long getCreated() {
-		return created;
-	}
-
-	public void setCreated(Long created) {
-		this.created = created;
-	}
-
-	public Long getCurrentPeriodEnd() {
-		return currentPeriodEnd;
-	}
-
-	public void setCurrentPeriodEnd(Long currentPeriodEnd) {
-		this.currentPeriodEnd = currentPeriodEnd;
-	}
-
-	public Long getCurrentPeriodStart() {
-		return currentPeriodStart;
-	}
-
-	public void setCurrentPeriodStart(Long currentPeriodStart) {
-		this.currentPeriodStart = currentPeriodStart;
-	}
-
-	public String getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(String customer) {
-		this.customer = customer;
-	}
-
-	public Integer getDaysUntilDue() {
-		return daysUntilDue;
-	}
-
-	public void setDaysUntilDue(Integer daysUntilDue) {
-		this.daysUntilDue = daysUntilDue;
-	}
-
-	public Discount getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(Discount discount) {
-		this.discount = discount;
-	}
-
-	public Long getEndedAt() {
-		return endedAt;
-	}
-
-	public void setEndedAt(Long endedAt) {
-		this.endedAt = endedAt;
-	}
-
-	public Map<String, String> getMetadata() {
-		return metadata;
-	}
-
-	public void setMetadata(Map<String, String> metadata) {
-		this.metadata = metadata;
-	}
-
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(Plan plan) {
-		this.plan = plan;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	public Long getStart() {
-		return start;
-	}
-
-	public void setStart(Long start) {
-		this.start = start;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Double getTaxPercent() {
-		return taxPercent;
-	}
-
-	public void setTaxPercent(Double taxPercent) {
-		this.taxPercent = taxPercent;
-	}
-
-	public Long getTrialEnd() {
-		return trialEnd;
-	}
-
-	public void setTrialEnd(Long trialEnd) {
-		this.trialEnd = trialEnd;
-	}
-
-	public Long getTrialStart() {
-		return trialStart;
-	}
-
-	public void setTrialStart(Long trialStart) {
-		this.trialStart = trialStart;
-	}
-
-	public SubscriptionItemCollection getSubscriptionItems() {
-		return items;
-	}
-
-	public void setSubscriptionItems(SubscriptionItemCollection items) {
-		this.items = items;
-	}
 
 	@Deprecated
 	public static SubscriptionCollection all(Map<String, Object> params)

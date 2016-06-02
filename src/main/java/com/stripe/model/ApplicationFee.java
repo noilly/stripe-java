@@ -8,8 +8,14 @@ import com.stripe.exception.InvalidRequestException;
 import com.stripe.net.APIResource;
 import com.stripe.net.RequestOptions;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Map;
 
+@Getter @Setter @EqualsAndHashCode(callSuper=false)
 public class ApplicationFee extends APIResource implements HasId {
 	String id;
 	String object;
@@ -24,114 +30,14 @@ public class ApplicationFee extends APIResource implements HasId {
 	Boolean livemode;
 	String originatingTransaction;
 	Boolean refunded;
-	FeeRefundCollection refunds;
+	@Getter(AccessLevel.NONE) FeeRefundCollection refunds;
 
+	/**
+	 * @deprecated
+	 * Use `account` field (https://stripe.com/docs/upgrades#2013-12-03)
+	 */
 	@Deprecated
 	String user;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getObject() {
-		return object;
-	}
-
-	public void setObject(String object) {
-		this.object = object;
-	}
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	public Long getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Long amount) {
-		this.amount = amount;
-	}
-
-	public Long getAmountRefunded() {
-		return amountRefunded;
-	}
-
-	public void setAmountRefunded(Long amountRefunded) {
-		this.amountRefunded = amountRefunded;
-	}
-
-	public String getApplication() {
-		return application;
-	}
-
-	public void setApplication(String application) {
-		this.application = application;
-	}
-
-	public String getBalanceTransaction() {
-		return balanceTransaction;
-	}
-
-	public void setBalanceTransaction(String balanceTransaction) {
-		this.balanceTransaction = balanceTransaction;
-	}
-
-	public String getCharge() {
-		return charge;
-	}
-
-	public void setCharge(String charge) {
-		this.charge = charge;
-	}
-
-	public Long getCreated() {
-		return created;
-	}
-
-	public void setCreated(Long created) {
-		this.created = created;
-	}
-
-	public String getCurrency() {
-		return currency;
-	}
-
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
-
-	public Boolean getLivemode() {
-		return livemode;
-	}
-
-	public void setLivemode(Boolean livemode) {
-		this.livemode = livemode;
-	}
-
-	public String getOriginatingTransaction() {
-		return originatingTransaction;
-	}
-
-	public void setOriginatingTransaction(String originatingTransaction) {
-		this.originatingTransaction = originatingTransaction;
-	}
-
-	public Boolean getRefunded() {
-		return refunded;
-	}
-
-	public void setRefunded(Boolean refunded) {
-		this.refunded = refunded;
-	}
 
 	public FeeRefundCollection getRefunds() {
 		// API versions 2014-07-26 and earlier render charge refunds as an array
@@ -141,24 +47,6 @@ public class ApplicationFee extends APIResource implements HasId {
 		}
 
 		return refunds;
-	}
-
-	/**
-	 * @deprecated
-	 * Use `account` field (https://stripe.com/docs/upgrades#2013-12-03)
-	 */
-	@Deprecated
-	public String getUser() {
-		return user;
-	}
-
-	/**
-	 * @deprecated
-	 * Use `account` field (https://stripe.com/docs/upgrades#2013-12-03)
-	 */
-	@Deprecated
-	public void setUser(String user) {
-		this.user = user;
 	}
 
 	public static ApplicationFee retrieve(String id) throws AuthenticationException,

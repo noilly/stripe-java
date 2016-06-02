@@ -19,6 +19,11 @@
             <version>2.2.4</version>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
@@ -52,6 +57,17 @@
         <developerConnection>scm:git:git@github.com:stripe/stripe-java.git</developerConnection>
         <url>git@github.com:stripe/stripe-java.git</url>
     </scm>
+    <profiles>
+        <profile>
+            <id>disable-java8-doclint</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <resources>
             <resource>
@@ -110,6 +126,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <defaultVersion>${project.version}</defaultVersion>
+                    <sourcepath>target/generated-sources/delombok</sourcepath>
+                </configuration>
             </plugin>
             <plugin>
               <groupId>org.sonatype.plugins</groupId>
@@ -128,6 +148,23 @@
                 <serverId>sonatype-nexus-staging</serverId>
                 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
               </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.16.16.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>delombok</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <addOutputDirectory>false</addOutputDirectory>
+                    <sourceDirectory>src/main/java</sourceDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
